@@ -8,9 +8,7 @@ public class SubscribeAllBookTicker {
 
         SubscriptionClient client = SubscriptionClient.create();
    
-        client.subscribeAllBookTickerEvent(((event) -> {
-            System.out.println(event);
-        }), null);
+        client.subscribeAllBookTickerEvent(System.out::println, null);
 
     }
 

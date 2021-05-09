@@ -8,9 +8,7 @@ public class SubscribeAllMiniTicker {
 
         SubscriptionClient client = SubscriptionClient.create();
    
-        client.subscribeAllMiniTickerEvent(((event) -> {
-            System.out.println(event);
-        }), null);
+        client.subscribeAllMiniTickerEvent(System.out::println, null);
 
     }
 

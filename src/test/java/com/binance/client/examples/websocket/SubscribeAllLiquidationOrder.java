@@ -8,9 +8,7 @@ public class SubscribeAllLiquidationOrder {
 
         SubscriptionClient client = SubscriptionClient.create();
    
-        client.subscribeAllLiquidationOrderEvent(((event) -> {
-            System.out.println(event);
-        }), null);
+        client.subscribeAllLiquidationOrderEvent(System.out::println, null);
 
     }
 
