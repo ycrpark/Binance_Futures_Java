@@ -1,5 +1,6 @@
 package com.binance.client.impl;
 
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -493,7 +494,7 @@ class WebsocketRequestImpl {
             } else if(jsonWrapper.getString("e").equals("ORDER_TRADE_UPDATE")) {
                 OrderUpdate orderUpdate = new OrderUpdate();
                 JsonWrapper jsondata = jsonWrapper.getJsonObject("o");
-                orderUpdate.setSymbol(jsondata.getString("s"));
+                orderUpdate.setSymbol(jsondata.getStringOrDefault("s", ""));
                 orderUpdate.setClientOrderId(jsondata.getString("c"));
                 orderUpdate.setSide(jsondata.getString("S"));
                 orderUpdate.setType(jsondata.getString("o"));
@@ -508,8 +509,8 @@ class WebsocketRequestImpl {
                 orderUpdate.setLastFilledQty(jsondata.getBigDecimal("l"));
                 orderUpdate.setCumulativeFilledQty(jsondata.getBigDecimal("z"));
                 orderUpdate.setLastFilledPrice(jsondata.getBigDecimal("L"));
-                orderUpdate.setCommissionAsset(jsondata.getString("N"));
-                orderUpdate.setCommissionAmount(jsondata.getLong("n"));
+                orderUpdate.setCommissionAsset(jsondata.getStringOrDefault("N", ""));
+                orderUpdate.setCommissionAmount(jsondata.getBigDecimalOrDefault("n", BigDecimal.ZERO));
                 orderUpdate.setOrderTradeTime(jsondata.getLong("T"));
                 orderUpdate.setTradeID(jsondata.getLong("t"));
                 orderUpdate.setBidsNotional(jsondata.getBigDecimal("b"));
@@ -517,6 +518,8 @@ class WebsocketRequestImpl {
                 orderUpdate.setIsMarkerSide(jsondata.getBoolean("m"));
                 orderUpdate.setIsReduceOnly(jsondata.getBoolean("R"));
                 orderUpdate.setWorkingType(jsondata.getString("wt"));
+                orderUpdate.setActivationPrice(jsondata.getBigDecimalOrDefault("AP", BigDecimal.ZERO));
+                orderUpdate.setCallbackRate(jsondata.getBigDecimalOrDefault("cr", BigDecimal.ZERO));
                 result.setOrderUpdate(orderUpdate); 
             }
             
