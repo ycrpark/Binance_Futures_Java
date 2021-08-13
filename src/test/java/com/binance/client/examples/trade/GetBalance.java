@@ -11,5 +11,7 @@ public class GetBalance {
         SyncRequestClient syncRequestClient = SyncRequestClient.create(PrivateConfig.API_KEY, PrivateConfig.SECRET_KEY,
                 options);
         System.out.println(syncRequestClient.getBalance());
+        
+        syncRequestClient.destroy();
     }
 }

@@ -76,4 +76,14 @@ abstract class RestApiInvoker {
         return client.newWebSocket(request, listener);
     }
 
+    static void destroy() {
+        try {
+            // client.cache().close();
+            client.connectionPool().evictAll();
+            client.dispatcher().executorService().shutdown();
+        } catch (Exception e) {
+            log.error("destroy client error: ", e);
+        }
+    }
+
 }

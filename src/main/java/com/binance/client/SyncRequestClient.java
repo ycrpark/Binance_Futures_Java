@@ -338,4 +338,6 @@ public interface SyncRequestClient {
      */
     List<TakerLongShortStat> getTakerLongShortRatio(String symbol, PeriodType period, Long startTime, Long endTime, Integer limit);
 
+    void destroy();
+
 }
