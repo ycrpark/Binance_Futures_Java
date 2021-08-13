@@ -37,3 +37,4 @@ out/
 ### VS Code ###
 .vscode/
 
+src/test/java/com/binance/client/examples/constants/PrivateConfig.java
